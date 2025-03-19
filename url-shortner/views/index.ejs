@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Url Shorter</title>
+</head>
+<body>
+    <div class="container">
+        <h1>URL Shortener</h1>
+        <form action="/shorten" method="POST">
+            <label for="longurl">Enter Your URL</label>
+            <input type="text" name="longurl" id="longurl" placeholder="Enter URL" required>
+            <button type="submit">Shorten</button>
+        </form>
+        <% if (shortUrl) { %>
+            <p>Shortened URL: <a href="<%= shortUrl %>" target="_blank"><%= shortUrl %></a></p>
+            <form action="/delete-url" method="POST" style="display: inline;">
+                <input type="hidden" name="urlcode" value="<%= shortUrl.split('/').pop() %>">
+                <button type="submit">Refresh</button>
+            </form>
+        <% } %>
+    </div>
+</body>
+</html>
